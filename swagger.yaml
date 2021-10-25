@@ -1,0 +1,215 @@
+openapi: 3.0.0
+info:
+  title: JOBS API-HEROKU
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://jobs-api-1979.herokuapp.com/api/v1
+  variables: {}
+paths:
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: User Login Heroku
+      operationId: UserLoginHeroku
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginHerokuRequest'
+            example:
+              email: aki@tika.com
+              password: '12345678'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register New User Heroku
+      operationId: RegisterNewUserHeroku
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterNewUserHerokuRequest'
+            example:
+              name: aki
+              email: aki@tika.com
+              password: '12345678'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /jobs:
+    get:
+      tags:
+      - Jobs
+      summary: Get All Jobs Heroku
+      operationId: GetAllJobsHeroku
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Jobs
+      summary: Create Job Heroku
+      operationId: CreateJobHeroku
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateJobHerokuRequest'
+            example:
+              company: Ministry of Programming
+              position: Junior Developer
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /jobs/{id}:
+    parameters:
+    - in: path
+      name: id
+      schema:
+        type: string
+      required: true
+      description: the job id
+    get:
+      tags:
+      - Jobs
+      summary: Get Single Job Heroku
+      operationId: GetSingleJobHeroku
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+      - Jobs
+      summary: Update Job Heroku
+      operationId: UpdateJobHeroku
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJobHerokuRequest'
+            example:
+              company: HUB 387
+              position: Full Stack Developer
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Jobs
+      summary: Delete Job Heroku
+      operationId: DeleteJobHeroku
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    UserLoginHerokuRequest:
+      title: UserLoginHerokuRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: aki@tika.com
+        password: '12345678'
+    RegisterNewUserHerokuRequest:
+      title: RegisterNewUserHerokuRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: aki
+        email: aki@tika.com
+        password: '12345678'
+    CreateJobHerokuRequest:
+      title: CreateJobHerokuRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: Ministry of Programming
+        position: Junior Developer
+    UpdateJobHerokuRequest:
+      title: UpdateJobHerokuRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: HUB 387
+        position: Full Stack Developer
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Misc
+  description: ''
+- name: Auth
+  description: ''
+- name: Jobs
+  description: ''
